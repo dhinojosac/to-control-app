@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import AddPatientForm from "./AddPatientForm.js"
 import PatientsList from "./PatientsList.js";
 import axios from 'axios';
+import "./Patient.css"
 
 export default function PatientFront() {
     const [patients, setPatients] = useState([]);
@@ -11,7 +12,7 @@ export default function PatientFront() {
     const [validation, setValidation] = useState("");
 
     const fetchPosts = () =>{
-            axios.get('http://localhost:8010/proxy/api/v1/patient')
+            axios.get('http://localhost:3002/api/v1/patient')
             .then(result => {
                 setPatients(result.data);
                 console.log(patients);
@@ -22,7 +23,7 @@ export default function PatientFront() {
     }
 
     const createPatient = (p) =>{
-        axios.post('http://localhost:8010/proxy/api/v1/patient', p)
+        axios.post('http://localhost:3002/api/v1/patient', p)
         .then(result => {
             console.log(result);
             fetchPosts();
@@ -34,7 +35,7 @@ export default function PatientFront() {
 
     const deletePatient = (ID) =>{
         console.log(ID)
-        axios.delete('http://localhost:8010/proxy/api/v1/patient/'+ID)
+        axios.delete('http://localhost:3002/api/v1/patient/'+ID)
         .then(result => {
             console.log(result);
             fetchPosts();

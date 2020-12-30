@@ -3,7 +3,7 @@ import React from "react";
 export default function AddPatientForm(props) {
     const {onSubmit, firstname, lastname, description, validation, onFirstNameChange, onLastNameChange,onDescriptionChange}=props;
 
-    return    <form onSubmit={onSubmit}>
+    return  <form onSubmit={onSubmit} className="patient-form">
             <div>
             <label htmlFor="patient-first-name">First Name:</label>
             <input type="text" value={firstname} onChange={onFirstNameChange} id="patient-first-name" placeholder="Enter the first name" className="textfield" />
