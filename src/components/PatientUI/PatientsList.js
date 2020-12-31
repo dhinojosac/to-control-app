@@ -8,7 +8,16 @@ export default function PatientsList(props) {
         
             {patients.map(patient => <li key={patient.ID}>
                 <Patient details={patient} />
-                <button className="btn-outline btn-delete" onClick={() => onDeleteClick(patient.ID)}>Delete</button>
+                <button className="btn-outline btn-delete" onClick={() => {
+                        if(window.confirm(`Are you sure you want to delete ${patient.firstname} ${patient.lastname}?`)){
+                            onDeleteClick(patient.ID)
+                        }
+                    }}
+                    >Delete</button>
+                <button className="btn-outline btn-delete"
+                    
+                >Edit</button>
             </li>)}
         </ul>;
 }
+

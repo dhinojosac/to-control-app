@@ -2,7 +2,8 @@ import React, {useState, useEffect} from "react";
 import AddPatientForm from "./AddPatientForm.js"
 import PatientsList from "./PatientsList.js";
 import axios from 'axios';
-import "./Patient.css"
+import "./Patient.css";
+import {getToken} from "../../Services/AuthServices.js";
 
 export default function PatientFront() {
     const [patients, setPatients] = useState([]);
@@ -12,7 +13,12 @@ export default function PatientFront() {
     const [validation, setValidation] = useState("");
 
     const fetchPosts = () =>{
-            axios.get('http://localhost:3002/api/v1/patient')
+            let config = {
+                headers: {
+                'Authorization': 'Bearer ' + getToken()
+                }
+            }
+            axios.get('http://localhost:3002/api/v1/patient',config)
             .then(result => {
                 setPatients(result.data);
                 console.log(patients);
@@ -23,7 +29,12 @@ export default function PatientFront() {
     }
 
     const createPatient = (p) =>{
-        axios.post('http://localhost:3002/api/v1/patient', p)
+        let config = {
+            headers: {
+            'Authorization': 'Bearer ' + getToken()
+            }
+        }
+        axios.post('http://localhost:3002/api/v1/patient', p, config)
         .then(result => {
             console.log(result);
             fetchPosts();
@@ -34,8 +45,13 @@ export default function PatientFront() {
     }
 
     const deletePatient = (ID) =>{
+        let config = {
+            headers: {
+            'Authorization': 'Bearer ' + getToken()
+            }
+        }
         console.log(ID)
-        axios.delete('http://localhost:3002/api/v1/patient/'+ID)
+        axios.delete('http://localhost:3002/api/v1/patient/'+ID, config)
         .then(result => {
             console.log(result);
             fetchPosts();

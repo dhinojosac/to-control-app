@@ -19,7 +19,7 @@ export default function Patient(props) {
     }
 
     return <div className="patient">
-        <div className="patient-info">
+        <div className="patient-info" onClick={()=>console.log("Clicked "+ details.firstname)}>
             <h2>{details.firstname} {details.lastname}</h2>
             <p>{details.description}</p>
         </div>

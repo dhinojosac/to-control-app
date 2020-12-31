@@ -85,6 +85,11 @@
   .patient-info {
     padding: 10px 10px;
   }
+
+  .patient-info:hover{
+    background-color:#aca6a6;
+  }
+
   .patient-info h2 {
     margin-top: 10px;
     margin-bottom: 0;
